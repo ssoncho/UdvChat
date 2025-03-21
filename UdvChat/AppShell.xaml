@@ -3,13 +3,14 @@
     x:Class="UdvChat.AppShell"
     xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
     xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-    xmlns:local="clr-namespace:UdvChat"
-    Shell.FlyoutBehavior="Flyout"
+    xmlns:pages="clr-namespace:UdvChat.Presentation.Pages"
+    xmlns:str="clr-namespace:UdvChat.Resources.Strings"
+    Shell.FlyoutBehavior="Disabled"
     Title="UdvChat">
 
     <ShellContent
-        Title="Home"
-        ContentTemplate="{DataTemplate local:MainPage}"
+        Title="{x:Static str:Strings.AppName}"
+        ContentTemplate="{DataTemplate pages:ChatListPage}"
         Route="MainPage" />
 
 </Shell>
