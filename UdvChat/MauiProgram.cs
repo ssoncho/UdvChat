@@ -21,6 +21,7 @@ public static class MauiProgram
 				fonts.AddFont("OpenSans-Semibold.ttf", "OpenSansSemibold");
 			});
         builder.Services.AddSingleton<IChatService, ChatService>();
+        builder.Services.AddSingleton<IMessageService, MessageService>();
         builder.Services.AddSingleton<ChatListViewModel>();
         builder.Services.AddSingleton<ChatListPage>();
         builder.Services.AddTransient<ChatViewModel>();

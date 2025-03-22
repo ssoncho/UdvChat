@@ -11,10 +11,10 @@
                         ItemsSource="{Binding Chats}">
             <CollectionView.ItemsLayout>
                 <GridItemsLayout Orientation="Vertical"
-                                     VerticalItemSpacing="5" />
+                                 VerticalItemSpacing="5" />
             </CollectionView.ItemsLayout>
             <CollectionView.ItemTemplate>
-                <DataTemplate x:DataType="{x:Type entities:ShortChatEntity}">
+                <DataTemplate x:DataType="{x:Type entities:ChatEntity}">
                     <Grid RowDefinitions="Auto, Auto"
                           BackgroundColor="LightGray"
                           Padding="5">

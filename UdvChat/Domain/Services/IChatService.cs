@@ -9,7 +9,7 @@ namespace UdvChat.Domain.Services
 {
     public interface IChatService
     {
-        List<ShortChatEntity> GetAllChats();
+        List<ChatEntity> GetAllChats();
         ChatEntity GetChatById(Guid id);
         void AddChat(ChatEntity chat);
     }

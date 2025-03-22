@@ -6,8 +6,8 @@ using System.Threading.Tasks;
 
 namespace UdvChat.Domain.Entities
 {
-    public record ChatEntity(Guid Id, string Name)
+    public record MessageEntity(UserEntity User, string Text)
     {
-        public List<MessageEntity> Messages { get; } = new();
+        public DateOnly Date = DateOnly.FromDateTime(DateTime.Now);
     }
 }

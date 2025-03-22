@@ -21,7 +21,7 @@ namespace UdvChat.Presentation.ViewModels
         private readonly IChatService _chatService;
 
         [ObservableProperty]
-        private ObservableCollection<ShortChatEntity> chats;
+        private ObservableCollection<ChatEntity> chats;
 
         public ChatListViewModel(IPopupService popupService, IChatService chatService)
         {

@@ -6,8 +6,5 @@ using System.Threading.Tasks;
 
 namespace UdvChat.Domain.Entities
 {
-    public record ChatEntity(Guid Id, string Name)
-    {
-        public List<MessageEntity> Messages { get; } = new();
-    }
+    public record UserEntity(string Name);
 }

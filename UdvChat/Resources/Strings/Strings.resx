@@ -120,4 +120,22 @@
   <data name="AppName" xml:space="preserve">
     <value>Udv чат</value>
   </data>
+  <data name="DefaultUserName" xml:space="preserve">
+    <value>Иван</value>
+  </data>
+  <data name="FirstPhrase" xml:space="preserve">
+    <value>Секундочку, я сейчас покручу шестеренками в своей голове...</value>
+  </data>
+  <data name="HelloPhrase" xml:space="preserve">
+    <value>Привет! Я ваш виртуальный помощник. Чем могу помочь?</value>
+  </data>
+  <data name="RobotName" xml:space="preserve">
+    <value>Робот</value>
+  </data>
+  <data name="SecondPhrase" xml:space="preserve">
+    <value>Кажется, мне пора на подзарядку... Но сначала отвечу на ваше сообщение!</value>
+  </data>
+  <data name="ThirdPhrase" xml:space="preserve">
+    <value>Кстати, бананы — это ягоды, а клубника — нет. Вот такой вот фруктовый обман!</value>
+  </data>
 </root>
