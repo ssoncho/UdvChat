@@ -13,6 +13,7 @@ namespace UdvChat.Utilities
     public class KeyboardListener : Java.Lang.Object, ViewTreeObserver.IOnGlobalLayoutListener
     {
         private readonly Action _onKeyboardOpened;
+        private bool isOpenedNow;
 
         public KeyboardListener(Action onKeyboardOpened)
         {
@@ -29,9 +30,14 @@ namespace UdvChat.Utilities
             int screenHeight = rootView.Height;
             int keyboardHeight = screenHeight - rect.Bottom;
 
-            if (keyboardHeight > screenHeight * 0.15)
+            if (keyboardHeight > screenHeight * 0.15 && isOpenedNow)
             {
                 _onKeyboardOpened?.Invoke();
+                isOpenedNow = false;
+            }
+            else if (keyboardHeight <= screenHeight * 0.15)
+            {
+                isOpenedNow = true;
             }
         }
     }

@@ -6,15 +6,15 @@
              xmlns:entities="clr-namespace:UdvChat.Domain.Entities"
              x:DataType="vm:ChatViewModel"
              Title="{Binding Chat.Name}">
-    <Grid RowDefinitions="*,Auto">
+    <Grid RowDefinitions="*,Auto"
+          x:Name="MainLayout">
         <CollectionView 
             x:Name="MessagesCollectionView"
             ItemsSource="{Binding Messages}"
             Grid.Row="0"
             Margin="10,0"
             SelectionMode="None"
-            ItemsUpdatingScrollMode="KeepLastItemInView"
-            Loaded="MessagesCollectionView_Loaded">
+            ItemsUpdatingScrollMode="KeepLastItemInView">
 
             <CollectionView.ItemTemplate>
                 <DataTemplate x:DataType="entities:MessageEntity">
@@ -34,21 +34,25 @@
             </CollectionView.ItemTemplate>
         </CollectionView>
 
-        <Grid Grid.Row="1" Padding="10" BackgroundColor="White">
+        <Grid Grid.Row="1" Padding="5" BackgroundColor="White">
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="*" />
                 <ColumnDefinition Width="Auto" />
             </Grid.ColumnDefinitions>
-
-            <Entry x:Name="MessageEntry"
-                   Text="{Binding NewMessageText, Mode=TwoWay}"
-                   Placeholder="Введите сообщение..."
-                   Grid.Column="0"/>
+            <Editor x:Name="MessageEditor"
+                    Text="{Binding NewMessageText, Mode=TwoWay}"
+                    Placeholder="Введите сообщение..."
+                    AutoSize="TextChanges"
+                    BackgroundColor="White"
+                    MinimumHeightRequest="40"
+                    MaximumHeightRequest="80"
+                    Grid.Column="0"/>
 
             <Button Text="Отправить"
                     Command="{Binding SendMessageCommand}"
                     Grid.Column="1"
-                    Margin="10,0,0,0"/>
+                    Margin="10,0,0,0"
+                    VerticalOptions="End"/>
         </Grid>
     </Grid>
 </ContentPage>
