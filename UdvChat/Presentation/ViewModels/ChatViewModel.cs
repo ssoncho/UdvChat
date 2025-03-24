@@ -43,17 +43,26 @@ namespace UdvChat.Presentation.ViewModels
                 chatId = Guid.Parse(Id);
                 Chat = _chatService.GetChatById(chatId);
                 Messages = _messageService.GetAllMessages(chatId).ToObservableCollection();
+
+                if (Chat.LastMessage == null)
+                {
+                    var message = _messageService.ReceiveMessage(chatId, true);
+                    Messages.Add(message);
+                }
             }
         }
 
         [RelayCommand]
-        private void SendMessage()
+        private async Task SendMessage()
         {
             if (string.IsNullOrEmpty(NewMessageText))
                 return;
-            var (senderMessage, recipientMessage) = _messageService.SendMessage(chatId, NewMessageText);
+            var senderMessage = _messageService.SendMessage(chatId, NewMessageText);
             NewMessageText = "";
             Messages.Add(senderMessage);
+
+            await Task.Delay(1000);
+            var recipientMessage = _messageService.ReceiveMessage(chatId, false);
             Messages.Add(recipientMessage);
         }
     }

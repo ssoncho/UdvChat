@@ -13,8 +13,8 @@ namespace UdvChat.Data
         public static List<ChatEntity> Chats = new();
         public static Dictionary<UserTypes, UserEntity> Users = new() 
         {
-            { UserTypes.Default, new UserEntity(Strings.DefaultUserName) },
-            { UserTypes.Robot, new UserEntity(Strings.RobotName) }
+            { UserTypes.Default, new UserEntity(Strings.DefaultUserName, true) },
+            { UserTypes.Robot, new UserEntity(Strings.RobotName, false) }
         };
         public static List<string> Phrases = [Strings.FirstPhrase, Strings.SecondPhrase, Strings.ThirdPhrase];
     }

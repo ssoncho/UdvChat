@@ -9,5 +9,6 @@ namespace UdvChat.Domain.Entities
     public record ChatEntity(Guid Id, string Name)
     {
         public List<MessageEntity> Messages { get; } = new();
+        public MessageEntity LastMessage => Messages.LastOrDefault();
     }
 }

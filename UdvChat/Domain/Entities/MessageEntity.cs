@@ -8,6 +8,6 @@ namespace UdvChat.Domain.Entities
 {
     public record MessageEntity(UserEntity User, string Text)
     {
-        public DateOnly Date = DateOnly.FromDateTime(DateTime.Now);
+        public DateTime Date { get; set; } = DateTime.Now;
     }
 }

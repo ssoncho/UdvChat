@@ -5,25 +5,34 @@ using System.Text;
 using System.Threading.Tasks;
 using UdvChat.Data;
 using UdvChat.Domain.Entities;
+using UdvChat.Resources.Strings;
 
 namespace UdvChat.Domain.Services
 {
     public class MessageService : IMessageService
     {
-        public (MessageEntity senderMessage, MessageEntity recipientMessage) SendMessage(Guid chatId, string messageText)
+        public MessageEntity SendMessage(Guid chatId, string messageText)
         {
-            var chat = AppData.Chats.Find(chat => chat.Id == chatId);
             var sender = AppData.Users[UserTypes.Default];
-            var recipient = AppData.Users[UserTypes.Robot];
-            var senderMessage = new MessageEntity(sender, messageText);
+            var message = CreateMessage(chatId, sender, messageText);
+            return message;
+        }
 
-            var random = new Random();
-            var randomPhrase = AppData.Phrases[random.Next(AppData.Phrases.Count)];
-            var recipientMessage = new MessageEntity(recipient, randomPhrase);
-
-            chat.Messages.Add(senderMessage);
-            chat.Messages.Add(recipientMessage);
-            return (senderMessage, recipientMessage);
+        public MessageEntity ReceiveMessage(Guid chatId, bool isFirstMessageInChat)
+        {
+            string messageText;
+            if (isFirstMessageInChat)
+            {
+                messageText = Strings.HelloPhrase;
+            }
+            else
+            {
+                var random = new Random();
+                messageText = AppData.Phrases[random.Next(AppData.Phrases.Count)];
+            }
+            var sender = AppData.Users[UserTypes.Robot];
+            var message = CreateMessage(chatId, sender, messageText);
+            return message;
         }
 
         public List<MessageEntity> GetAllMessages(Guid chatId)
@@ -32,10 +41,12 @@ namespace UdvChat.Domain.Services
             return chat.Messages;
         }
 
-        public MessageEntity GetLastMessage(Guid chatId)
+        private MessageEntity CreateMessage(Guid chatId, UserEntity sender, string messageText)
         {
             var chat = AppData.Chats.Find(chat => chat.Id == chatId);
-            return chat.Messages.Last();
+            var message = new MessageEntity(sender, messageText);
+            chat.Messages.Add(message);
+            return message;
         }
     }
 }

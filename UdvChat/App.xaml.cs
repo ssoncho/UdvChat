@@ -20,16 +20,19 @@ namespace UdvChat
 
         protected override void OnStart()
         {
+            base.OnStart();
             LoadData();
         }
 
         protected override void OnSleep()
         {
+            base.OnSleep();
             SaveData();
         }
 
         protected override void OnResume()
         {
+            base.OnResume();
             LoadData();
         }
 

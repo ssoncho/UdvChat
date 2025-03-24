@@ -6,5 +6,5 @@ using System.Threading.Tasks;
 
 namespace UdvChat.Domain.Entities
 {
-    public record UserEntity(string Name);
+    public record UserEntity(string Name, bool IsSender);
 }

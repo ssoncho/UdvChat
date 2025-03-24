@@ -9,7 +9,7 @@ namespace UdvChat;
 
 public static class MauiProgram
 {
-	public static MauiApp CreateMauiApp()
+    public static MauiApp CreateMauiApp()
 	{
 		var builder = MauiApp.CreateBuilder();
 		builder
@@ -29,9 +29,9 @@ public static class MauiProgram
         builder.Services.AddTransientPopup<CreateChatPage,CreateChatViewModel>();
 
 #if DEBUG
-		builder.Logging.AddDebug();
+        builder.Logging.AddDebug();
 #endif
 
 		return builder.Build();
-	}
+    }
 }

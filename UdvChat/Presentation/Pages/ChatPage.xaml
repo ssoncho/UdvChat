@@ -19,16 +19,15 @@
             <CollectionView.ItemTemplate>
                 <DataTemplate x:DataType="entities:MessageEntity">
                     <Border Padding="10" Margin="5"
-                           BackgroundColor="LightGray">
+                           BackgroundColor="{Binding User.IsSender, Converter={StaticResource SenderStatusToColorConverter}}">
                         <VerticalStackLayout>
                             <Label Text="{Binding User.Name}" 
                                    FontAttributes="Bold"
                                    FontSize="14"/>
                             <Label Text="{Binding Text}" 
                                    FontSize="16"/>
-                            <Label Text="{Binding Date, StringFormat='{dd.MM.yy}'}"
-                                   FontSize="12"
-                                   TextColor="Gray"/>
+                            <Label Text="{Binding Date, StringFormat='{0:dd.MM.yy}'}"
+                                   FontSize="12"/>
                         </VerticalStackLayout>
                     </Border>
                 </DataTemplate>

@@ -9,8 +9,8 @@ namespace UdvChat.Domain.Services
 {
     public interface IMessageService
     {
-        MessageEntity GetLastMessage(Guid chatId);
         List<MessageEntity> GetAllMessages(Guid chatId);
-        (MessageEntity senderMessage, MessageEntity recipientMessage) SendMessage(Guid chatId, string messageText);
+        MessageEntity SendMessage(Guid chatId, string messageText);
+        MessageEntity ReceiveMessage(Guid chatId, bool isFirstMessageInChat);
     }
 }

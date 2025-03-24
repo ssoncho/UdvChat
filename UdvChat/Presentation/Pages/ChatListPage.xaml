@@ -15,7 +15,7 @@
             </CollectionView.ItemsLayout>
             <CollectionView.ItemTemplate>
                 <DataTemplate x:DataType="{x:Type entities:ChatEntity}">
-                    <Grid RowDefinitions="Auto, Auto"
+                    <Grid RowDefinitions="Auto, Auto, Auto, Auto"
                           BackgroundColor="LightGray"
                           Padding="5">
                         <Grid.GestureRecognizers>
@@ -23,8 +23,14 @@
                                                           CommandParameter="{Binding Id}" />
                         </Grid.GestureRecognizers>
 
-                        <Label Text="{Binding Id}" Grid.Row="0" />
-                        <Label Text="{Binding Name}" Grid.Row="1"/>
+                        <Label Text="{Binding Name}" 
+                               LineBreakMode="TailTruncation"
+                               Grid.Row="0" />
+                        <Label Text="{Binding LastMessage.Date, StringFormat='{0:dd.MM.yy}'}" Grid.Row="1"/>
+                        <Label Text="{Binding LastMessage.User.Name}" Grid.Row="2"/>
+                        <Label Text="{Binding LastMessage.Text}" 
+                               LineBreakMode="TailTruncation"
+                               Grid.Row="3"/>
                     </Grid>
                 </DataTemplate>
             </CollectionView.ItemTemplate>
