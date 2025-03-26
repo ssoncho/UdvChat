@@ -123,6 +123,9 @@
   <data name="DefaultUserName" xml:space="preserve">
     <value>Иван</value>
   </data>
+  <data name="EmptyChatListText" xml:space="preserve">
+    <value>Начните первый чат!</value>
+  </data>
   <data name="FirstPhrase" xml:space="preserve">
     <value>Секундочку, я сейчас покручу шестеренками в своей голове...</value>
   </data>

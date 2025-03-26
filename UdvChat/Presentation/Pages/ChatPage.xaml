@@ -4,6 +4,7 @@
              x:Class="UdvChat.Presentation.Pages.ChatPage"
              xmlns:vm="clr-namespace:UdvChat.Presentation.ViewModels"
              xmlns:entities="clr-namespace:UdvChat.Domain.Entities"
+             xmlns:templates="clr-namespace:UdvChat.Presentation.Templates"
              x:DataType="vm:ChatViewModel"
              Title="{Binding Chat.Name}">
     <Grid RowDefinitions="*,Auto"
@@ -12,29 +13,21 @@
             x:Name="MessagesCollectionView"
             ItemsSource="{Binding Messages}"
             Grid.Row="0"
-            Margin="10,0"
+            Margin="5,0"
             SelectionMode="None"
-            ItemsUpdatingScrollMode="KeepLastItemInView">
+            ItemsUpdatingScrollMode="KeepLastItemInView"
+            VerticalScrollBarVisibility="Never">
 
             <CollectionView.ItemTemplate>
-                <DataTemplate x:DataType="entities:MessageEntity">
-                    <Border Padding="10" Margin="5"
-                           BackgroundColor="{Binding User.IsSender, Converter={StaticResource SenderStatusToColorConverter}}">
-                        <VerticalStackLayout>
-                            <Label Text="{Binding User.Name}" 
-                                   FontAttributes="Bold"
-                                   FontSize="14"/>
-                            <Label Text="{Binding Text}" 
-                                   FontSize="16"/>
-                            <Label Text="{Binding Date, StringFormat='{0:dd.MM.yy}'}"
-                                   FontSize="12"/>
-                        </VerticalStackLayout>
-                    </Border>
+                <DataTemplate>
+                    <templates:MessageTemplate/>
                 </DataTemplate>
             </CollectionView.ItemTemplate>
         </CollectionView>
 
-        <Grid Grid.Row="1" Padding="5" BackgroundColor="White">
+        <Grid Grid.Row="1" 
+              Padding="5" 
+              BackgroundColor="LightGrey">
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="*" />
                 <ColumnDefinition Width="Auto" />
@@ -42,17 +35,23 @@
             <Editor x:Name="MessageEditor"
                     Text="{Binding NewMessageText, Mode=TwoWay}"
                     Placeholder="Введите сообщение..."
+                    PlaceholderColor="Gray"
                     AutoSize="TextChanges"
-                    BackgroundColor="White"
                     MinimumHeightRequest="40"
                     MaximumHeightRequest="80"
                     Grid.Column="0"/>
 
-            <Button Text="Отправить"
-                    Command="{Binding SendMessageCommand}"
-                    Grid.Column="1"
-                    Margin="10,0,0,0"
-                    VerticalOptions="End"/>
+            <ImageButton Command="{Binding SendMessageCommand}"
+                         VerticalOptions="End"
+                         Margin="10,0,0,0"
+                         Grid.Column="1">
+                <ImageButton.Source>
+                    <FontImageSource Glyph="&#xea97;"
+                                     FontFamily="FluentIcons"
+                                     Size="32"
+                                     Color="{x:StaticResource Primary}"/>
+                </ImageButton.Source>
+            </ImageButton>
         </Grid>
     </Grid>
 </ContentPage>

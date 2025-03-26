@@ -12,6 +12,7 @@ namespace UdvChat.Presentation.Pages;
 
 public partial class ChatPage : ContentPage
 {
+    private ViewTreeObserver.IOnGlobalLayoutListener keyboardListener;
     private ChatViewModel viewModel => BindingContext as ChatViewModel;
 
     public ChatPage(ChatViewModel chatViewModel)
@@ -34,7 +35,26 @@ public partial class ChatPage : ContentPage
         base.OnAppearing();
         viewModel.Initialize();
 #if ANDROID
-        Microsoft.Maui.ApplicationModel.Platform.CurrentActivity.Window.DecorView.ViewTreeObserver.AddOnGlobalLayoutListener(new KeyboardListener(ScrollToLastMessage));
+        var activity = Platform.CurrentActivity;
+        var decorView = activity.Window.DecorView;
+        keyboardListener = new KeyboardListener(ScrollToLastMessage);
+        decorView.ViewTreeObserver.AddOnGlobalLayoutListener(keyboardListener);
+
+        Platform.CurrentActivity.Window.SetSoftInputMode(Android.Views.SoftInput.AdjustResize);
+#endif
+    }
+
+    protected override void OnDisappearing()
+    {
+        base.OnDisappearing();
+#if ANDROID
+        var activity = Platform.CurrentActivity;
+        var decorView = activity.Window.DecorView;
+
+        decorView.ViewTreeObserver.RemoveOnGlobalLayoutListener(keyboardListener);
+        keyboardListener = null;
+
+        Platform.CurrentActivity.Window.SetSoftInputMode(Android.Views.SoftInput.AdjustPan);
 #endif
     }
 

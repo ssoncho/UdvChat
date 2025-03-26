@@ -11,6 +11,6 @@
     <ShellContent
         Title="{x:Static str:Strings.AppName}"
         ContentTemplate="{DataTemplate pages:ChatListPage}"
-        Route="MainPage" />
+        Route="ChatListPage"/>
 
 </Shell>

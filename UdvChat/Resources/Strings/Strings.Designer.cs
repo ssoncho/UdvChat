@@ -79,6 +79,15 @@ namespace UdvChat.Resources.Strings {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Начните первый чат!.
+        /// </summary>
+        internal static string EmptyChatListText {
+            get {
+                return ResourceManager.GetString("EmptyChatListText", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Секундочку, я сейчас покручу шестеренками в своей голове....
         /// </summary>
         internal static string FirstPhrase {

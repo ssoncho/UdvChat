@@ -5,19 +5,32 @@
              xmlns:toolkit="http://schemas.microsoft.com/dotnet/2022/maui/toolkit"
              xmlns:vm="clr-namespace:UdvChat.Presentation.ViewModels"
              xmlns:Datatype="vm:CreateChatViewModel">
-    <Border>
-        <VerticalStackLayout>
-            <Label Text="Создание нового чата"
-                   HorizontalOptions="Center" />
-            <Entry Placeholder="Название чата" 
-                   Text="{Binding ChatName}" />
-            <HorizontalStackLayout HorizontalOptions="Center"
-                                   Spacing="20">
-                <Button Text="Создать"
-                        Command="{Binding CreateCommand}"/>
-                <Button Text="Отменить"
-                        Command="{Binding CancelCommand}"/>
-            </HorizontalStackLayout>
-        </VerticalStackLayout>
-    </Border>
+    <Grid RowDefinitions="Auto, Auto, Auto"
+          HeightRequest="150"
+          WidthRequest="250"
+          Padding="10"
+          RowSpacing="10">
+        
+        <Label Text="Создание нового чата"
+               Grid.Row="0"
+               HorizontalOptions="Center"
+               FontAttributes="Bold" />
+
+        <Entry Placeholder="Название чата" 
+               PlaceholderColor="Gray"
+               Grid.Row="1"
+               Text="{Binding ChatName}" />
+
+        <Grid Grid.Row="2"
+              ColumnDefinitions="Auto,Auto"
+              ColumnSpacing="20"
+              HorizontalOptions="Center">
+            <Button Text="Создать"
+                    Grid.Column="0"
+                    Command="{Binding CreateCommand}"/>
+            <Button Text="Отменить"
+                    Grid.Column="1"
+                    Command="{Binding CancelCommand}"/>
+        </Grid>
+    </Grid>
 </toolkit:Popup>

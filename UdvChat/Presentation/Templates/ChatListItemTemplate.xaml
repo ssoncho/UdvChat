@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentView xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="UdvChat.Presentation.Templates.ChatListItemTemplate"
+             xmlns:vm="clr-namespace:UdvChat.Presentation.ViewModels"
+             xmlns:entities="clr-namespace:UdvChat.Domain.Entities"
+             x:DataType="entities:ChatEntity">
+    <Border BackgroundColor="{x:StaticResource Secondary}"
+            Padding="10"
+            StrokeShape="RoundRectangle 10">
+        <Grid RowDefinitions="Auto, Auto"
+              RowSpacing="5">
+            <Grid.GestureRecognizers>
+                <TapGestureRecognizer Command="{Binding Source={RelativeSource AncestorType={x:Type vm:ChatListViewModel}}, Path=NavigateToChatCommand}"
+                                      CommandParameter="{Binding Id}" />
+            </Grid.GestureRecognizers>
+
+            <Grid RowDefinitions="Auto"
+                  ColumnDefinitions="Auto, *"
+                  Grid.Row="0">
+
+                <Label Text="{Binding Name}"
+                       FontAttributes="Bold"
+                       Grid.Row="0"
+                       Grid.Column="0"
+                       FontSize="Medium"
+                       LineBreakMode="TailTruncation" />
+
+                <Label Text="{Binding LastMessage.Date, StringFormat='{0:dd.MM.yy}'}"
+                       Grid.Row="0"
+                       Grid.Column="1"
+                       HorizontalOptions="End"
+                       FontSize="Small"
+                       TextColor="Gray"/>
+            </Grid>
+
+            <Grid RowDefinitions="Auto"
+                  ColumnDefinitions="Auto, *"
+                  ColumnSpacing="5"
+                  Grid.Row="1">
+
+                <Label Text="{Binding LastMessage.User.Name, StringFormat='{0}:'}"
+                       FontAttributes="Bold"
+                       Grid.Row="0"                        
+                       Grid.Column="0"
+                       TextColor="Black" />
+
+                <Label Text="{Binding LastMessage.Text}"
+                       Grid.Row="0"                        
+                       Grid.Column="1"
+                       LineBreakMode="TailTruncation"
+                       FontSize="Small"
+                       TextColor="{x:StaticResource Gray600}"
+                       HorizontalOptions="Start"/>
+            </Grid>
+        </Grid>
+    </Border>
+</ContentView>

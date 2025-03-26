@@ -19,6 +19,7 @@ public static class MauiProgram
 			{
 				fonts.AddFont("OpenSans-Regular.ttf", "OpenSansRegular");
 				fonts.AddFont("OpenSans-Semibold.ttf", "OpenSansSemibold");
+				fonts.AddFont("FluentSystemIcons-Filled.ttf", "FluentIcons");
 			});
         builder.Services.AddSingleton<IChatService, ChatService>();
         builder.Services.AddSingleton<IMessageService, MessageService>();

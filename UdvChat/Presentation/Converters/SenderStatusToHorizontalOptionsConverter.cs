@@ -7,17 +7,16 @@ using System.Threading.Tasks;
 
 namespace UdvChat.Presentation.Converters
 {
-    class SenderStatusToColorConverter : IValueConverter
+    class SenderStatusToHorizontalOptionsConverter : IValueConverter
     {
         public object? Convert(object? value, Type targetType, object? parameter, CultureInfo culture)
         {
-            var colorResource = Application.Current.Resources.MergedDictionaries.FirstOrDefault() as ResourceDictionary;
             if (value is bool isSender)
             {
                 if (isSender)
-                    return colorResource["Secondary"] as Color;
+                    return LayoutOptions.End;
             }
-            return colorResource["Gray100"] as Color;
+            return LayoutOptions.Start;
         }
 
         public object? ConvertBack(object? value, Type targetType, object? parameter, CultureInfo culture)
